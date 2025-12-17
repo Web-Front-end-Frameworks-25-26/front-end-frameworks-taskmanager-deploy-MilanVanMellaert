@@ -1,0 +1,37 @@
+<div class="login-container">
+  <h2> {{ isLoginMode ? 'Login' : 'Registreren' }}</h2>
+
+  @if (errorMessage) {
+  <div class="error">
+    {{ errorMessage }}
+  </div>
+  }
+
+  @if (successMessage) {
+  <div class="success">
+    {{ successMessage }}
+  </div>
+  }
+  <form (ngSubmit)="onSubmit()">
+    <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required>
+
+    <input type="password" [(ngModel)]="password" name="password" placeholder="Wachtwoord (min. 6 karakters)" required>
+
+    @if (!loading) {
+    <button type="submit">
+      {{ isLoginMode ? 'Login' : 'Registreren' }}
+    </button>
+    }
+    @else {
+      Loading...
+    }
+
+  </form>
+
+  <p>
+    {{ isLoginMode ? 'Nog geen account?' : 'Al een account?' }}
+    <a (click)="toggleMode()">
+      {{ isLoginMode ? 'Registreer hier' : 'Login hier' }}
+    </a>
+  </p>
+</div>

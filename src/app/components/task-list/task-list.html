@@ -1,0 +1,17 @@
+<div>
+    <h2>Tasks</h2>
+    <div>
+      <input [(ngModel)]="newTaskTitle" placeholder="New task">
+      <button (click)= "addTask()">Add Task</button>
+    </div>
+    <ul>
+      @for(task of tasks; track task.id) {
+        <li>
+          <input type="checkbox" [(ngModel)]="task.completed" (change)="updateTask(task)">
+          {{ task.title }}
+          <button (click)="deleteTask(task.id)">Delete</button>
+        </li>
+      }
+    </ul>
+    <button (click)="logout()">Uitloggen</button>
+  </div>
